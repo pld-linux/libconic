@@ -84,6 +84,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/conic/coniciap.h
 %{_includedir}/conic/conicstatisticsevent.h
 %{_libdir}/libconic.la
+%{_libdir}/libconic.so
 %{_pkgconfigdir}/conic.pc
 
 
