@@ -1,0 +1,10 @@
+diff -ur libconic-0.10-o/configure.ac libconic-0.10/configure.ac
+--- libconic-0.10-o/configure.ac	2006-08-31 01:39:49.000000000 -0600
++++ libconic-0.10/configure.ac	2007-06-01 20:58:10.000000000 -0600
+@@ -1,5 +1,4 @@
+-AC_INIT([libconic], patsubst(esyscmd([dpkg-parsechangelog | sed -n '/^Version: \(.*\)$/ {s//\1/;p}']), [
+-]), [Kalle.Valo@nokia.com])
++AC_INIT([libconic], [0.10], [Kalle.Valo@nokia.com])
+ AM_INIT_AUTOMAKE([foreign])
+ 
+ AC_PROG_CC
