@@ -1,0 +1,26 @@
+diff -ur libconic-0.10-o/configure.ac libconic-0.10/configure.ac
+--- libconic-0.10-o/configure.ac	2007-06-02 08:43:40.000000000 -0600
++++ libconic-0.10/configure.ac	2007-06-02 08:45:07.000000000 -0600
+@@ -50,7 +50,7 @@
+ AC_SUBST(GCONF_CFLAGS)
+ AC_SUBST(GCONF_LIBS)
+ 
+-CONCFLAGS="-Wall -Werror -Wmissing-prototypes -std=c99"
++CONCFLAGS="-Wall -Wmissing-prototypes -std=c99"
+ AC_SUBST(CONCFLAGS)
+ 
+ AC_CONFIG_FILES([Makefile \
+Only in libconic-0.10: configure.ac~
+diff -ur libconic-0.10-o/tests/Makefile.am libconic-0.10/tests/Makefile.am
+--- libconic-0.10-o/tests/Makefile.am	2006-08-31 01:39:49.000000000 -0600
++++ libconic-0.10/tests/Makefile.am	2007-06-02 08:45:12.000000000 -0600
+@@ -13,7 +13,7 @@
+ 	$(top_builddir)/conic/libconic.la
+ 
+ AM_LDFLAGS = -static
+-AM_CFLAGS = -Wall -Werror -std=gnu99 -Wmissing-prototypes
++AM_CFLAGS = -Wall -std=gnu99 -Wmissing-prototypes
+ 
+ bin_PROGRAMS = test-connect test-disconnect test-automatic-events \
+ 		test-statistics test-proxies test-iap test-two-objects
+Only in libconic-0.10/tests: Makefile.am~
