@@ -1,37 +1,41 @@
-Summary:	Maemo conic library
-Summary(pl.UTF-8):	Biblioteka Maemo conic
+Summary:	Maemo Internet Connectivity library
+Summary(pl.UTF-8):	Biblioteka łączności z Internetem dla Maemo
 Name:		libconic
-Version:	0.10
+Version:	0.13
 Release:	1
 License:	LGPL
 Group:		Libraries
 Source0:	http://repository.maemo.org/pool/bora/free/source/%{name}_%{version}.tar.gz
-# Source0-md5:	51ddafe361d4cccdb7186f50f637afcc
+# Source0-md5:	f852e61c2700b5bc571a730c6516e4ce
 Patch0:		%{name}-version.patch
 Patch1:		%{name}-dbus.patch
 Patch2:		%{name}-noWerror.patch
 URL:		http://maemo.org/
-BuildRequires:	autoconf
+BuildRequires:	GConf2-devel >= 2.0
+BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
-BuildRequires:	glib2-devel
+BuildRequires:	dbus-glib-devel >= 0.60
+BuildRequires:	glib2-devel >= 1:2.0
 BuildRequires:	intltool
 BuildRequires:	libtool
-BuildRequires:	osso-ic-oss-devel
-#BuildRequires:	python-devel
-#BuildRequires:	xulrunner-devel
+BuildRequires:	osso-ic-oss-devel >= 1.0.1
+BuildRequires:	pkgconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-Maemo conic library.
+Internet Connectivity library for Maemo platform.
 
 %description -l pl.UTF-8
-Biblioteka Maemo conic.
+Biblioteka łączności z Internetem dla platformy Maemo.
 
 %package devel
 Summary:	Header files for libconic
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki libconic
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Requires:	GConf2-devel >= 2.0
+Requires:	dbus-glib-devel >= 0.60
+Requires:	glib2-devel >= 1:2.0
 
 %description devel
 Header files for libconic.
@@ -58,7 +62,6 @@ Statyczna biblioteka libconic.
 %patch2 -p1
 
 %build
-%{__glib_gettextize}
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
@@ -80,7 +83,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog NEWS README
 %attr(755,root,root) %{_libdir}/libconic.so.*.*.*
 
 %files devel
