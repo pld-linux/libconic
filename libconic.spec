@@ -1,25 +1,31 @@
+#
+# Conditional build:
+%bcond_without	apidocs	# Doxygen documentation
+
 Summary:	Maemo Internet Connectivity library
 Summary(pl.UTF-8):	Biblioteka łączności z Internetem dla Maemo
 Name:		libconic
-Version:	0.13
+Version:	0.24.1
 Release:	1
-License:	LGPL
+License:	LGPL v2.1
 Group:		Libraries
-Source0:	http://repository.maemo.org/pool/bora/free/source/%{name}_%{version}.tar.gz
-# Source0-md5:	f852e61c2700b5bc571a730c6516e4ce
+#Source0Download: https://github.com/maemo-leste/libconic/releases
+Source0:	https://github.com/maemo-leste/libconic/archive/%{version}/%{name}-%{version}.tar.gz
+# Source0-md5:	fc387d4fb49631c5298bd734cc6b7231
 Patch0:		%{name}-version.patch
-Patch1:		%{name}-dbus.patch
+Patch1:		%{name}-format.patch
 Patch2:		%{name}-noWerror.patch
 URL:		http://maemo.org/
 BuildRequires:	GConf2-devel >= 2.0
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
 BuildRequires:	dbus-glib-devel >= 0.60
+%{?with_apidocs:BuildRequires:	doxygen}
 BuildRequires:	glib2-devel >= 1:2.0
-BuildRequires:	intltool
 BuildRequires:	libtool
-BuildRequires:	osso-ic-oss-devel >= 1.0.1
+BuildRequires:	icd2-osso-ic-devel >= 1.0.1
 BuildRequires:	pkgconfig
+BuildRequires:	sed >= 4.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -61,12 +67,15 @@ Statyczna biblioteka libconic.
 %patch1 -p1
 %patch2 -p1
 
+%{__sed} -i -e 's/@VERSION@/%{version}/' configure.ac
+
 %build
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
 %{__automake}
-%configure
+%configure \
+	--enable-docs%{!?with_apidocs:=no}
 %{__make}
 
 %install
@@ -74,6 +83,10 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
+
+%{__rm} $RPM_BUILD_ROOT%{_bindir}/test-*
+# obsoleted by pkg-config
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/libconic.la
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -84,11 +97,11 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libconic.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libconic.so.0
 
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libconic.so
-%{_libdir}/libconic.la
 %dir %{_includedir}/conic
 %{_includedir}/conic/conic.h
 %{_includedir}/conic/conicconnection.h

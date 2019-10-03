@@ -1,0 +1,20 @@
+--- libconic-0.24.1/tests/test-proxies.c.orig	2019-07-27 12:17:04.000000000 +0200
++++ libconic-0.24.1/tests/test-proxies.c	2019-10-03 17:28:52.278832306 +0200
+@@ -75,7 +75,7 @@
+ 	g_debug("ignore_hosts:");
+ 	list = con_ic_connection_get_proxy_ignore_hosts(connection);
+ 	for (entry = list; entry; entry = entry->next) {
+-		g_debug(entry->data);
++		g_debug("%s", entry->data);
+ 		g_free(entry->data);
+ 	}
+ 	g_slist_free(list);
+@@ -116,7 +116,7 @@
+ 	g_debug("ignore_hosts:");
+ 	list = con_ic_connection_get_proxy_ignore_hosts(connection);
+ 	for (entry = list; entry; entry = entry->next) {
+-		g_debug(entry->data);
++		g_debug("%s", entry->data);
+ 		g_free(entry->data);
+ 	}
+ 	g_slist_free(list);

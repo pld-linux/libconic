@@ -4,7 +4,7 @@ diff -ur libconic-0.10-o/configure.ac libconic-0.10/configure.ac
 @@ -1,5 +1,4 @@
 -AC_INIT([libconic], patsubst(esyscmd([dpkg-parsechangelog | sed -n '/^Version: \(.*\)$/ {s//\1/;p}']), [
 -]), [Kalle.Valo@nokia.com])
-+AC_INIT([libconic], [0.10], [Kalle.Valo@nokia.com])
++AC_INIT([libconic], [@VERSION@], [Kalle.Valo@nokia.com])
  AM_INIT_AUTOMAKE([foreign])
  
  AC_PROG_CC
