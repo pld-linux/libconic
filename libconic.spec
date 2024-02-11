@@ -5,16 +5,15 @@
 Summary:	Maemo Internet Connectivity library
 Summary(pl.UTF-8):	Biblioteka łączności z Internetem dla Maemo
 Name:		libconic
-Version:	0.24.1
+Version:	0.24.2
 Release:	1
 License:	LGPL v2.1
 Group:		Libraries
 #Source0Download: https://github.com/maemo-leste/libconic/releases
 Source0:	https://github.com/maemo-leste/libconic/archive/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	fc387d4fb49631c5298bd734cc6b7231
+# Source0-md5:	861b7dc94f5aa41a2a293a7eac39f012
 Patch0:		%{name}-version.patch
-Patch1:		%{name}-format.patch
-Patch2:		%{name}-noWerror.patch
+Patch1:		%{name}-noWerror.patch
 URL:		http://maemo.org/
 BuildRequires:	GConf2-devel >= 2.0
 BuildRequires:	autoconf >= 2.50
@@ -65,7 +64,6 @@ Statyczna biblioteka libconic.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
 
 %{__sed} -i -e 's/@VERSION@/%{version}/' configure.ac
 
